@@ -1,0 +1,218 @@
+
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#102a56">
+<title>SSDawar Recharge | Mobile Recharge</title>
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0;font-family:Arial,sans-serif;
+ background:#f1f5fb;color:#17243a;
+}
+header{
+ background:linear-gradient(135deg,#102a56,#1765bc);
+ color:white;padding:25px 18px;text-align:center;
+}
+.logo{font-size:28px;font-weight:bold}
+header p{margin:8px 0 0;color:#d9e9ff}
+.container{max-width:520px;margin:22px auto;padding:0 14px}
+.card{
+ background:white;border-radius:18px;padding:20px;
+ box-shadow:0 5px 22px #102a5612;margin-bottom:18px;
+}
+h2{font-size:21px;margin:0 0 16px}
+label{display:block;font-weight:bold;margin:15px 0 7px}
+input,select{
+ width:100%;padding:14px;border:1px solid #d5deeb;
+ border-radius:10px;font-size:16px;background:white;
+}
+.operators{
+ display:grid;grid-template-columns:repeat(4,1fr);gap:8px;
+}
+.operator{
+ padding:12px 3px;border:1px solid #dce4ef;
+ border-radius:12px;text-align:center;
+ background:white;font-weight:bold;cursor:pointer;
+}
+.operator.active{
+ border:2px solid #1765bc;background:#eaf3ff;
+ color:#1255a0;
+}
+button{
+ width:100%;padding:15px;border:0;border-radius:11px;
+ background:#1765bc;color:white;font-size:16px;
+ font-weight:bold;cursor:pointer;margin-top:15px;
+}
+button:disabled{opacity:.5;cursor:not-allowed}
+.plans{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.plan{
+ border:1px solid #dce4ef;border-radius:12px;
+ padding:13px;background:white;cursor:pointer;
+}
+.plan.active{border:2px solid #1765bc;background:#eaf3ff}
+.plan strong{font-size:20px}
+.plan small{display:block;margin-top:6px;color:#65748a}
+.note{
+ background:#fff7df;padding:12px;border-radius:10px;
+ font-size:13px;line-height:1.5;color:#725014;
+}
+footer{text-align:center;padding:20px;color:#64748b;font-size:13px}
+#message{margin-top:14px;font-size:14px;line-height:1.5}
+</style>
+</head>
+<body>
+
+<header>
+ <div class="logo">⚡ SSDawar Recharge</div>
+ <p>Recharge • Pay • Earn</p>
+ <p>आपका अपना डिजिटल रिचार्ज प्लेटफॉर्म</p>
+</header>
+
+<main class="container">
+
+ <section class="card">
+  <h2>📱 Mobile Recharge</h2>
+
+  <label for="mobile">मोबाइल नंबर</label>
+  <input id="mobile" type="tel" maxlength="10"
+   inputmode="numeric" placeholder="10 अंकों का नंबर">
+
+  <label>ऑपरेटर चुनें</label>
+  <div class="operators">
+   <div class="operator active" data-op="Jio">Jio</div>
+   <div class="operator" data-op="Airtel">Airtel</div>
+   <div class="operator" data-op="Vi">Vi</div>
+   <div class="operator" data-op="BSNL">BSNL</div>
+  </div>
+
+  <label for="circle">राज्य / सर्किल</label>
+  <select id="circle">
+   <option value="">सर्किल चुनें</option>
+   <option>Madhya Pradesh & Chhattisgarh</option>
+   <option>Delhi & NCR</option>
+   <option>Maharashtra & Goa</option>
+   <option>Uttar Pradesh East</option>
+   <option>Uttar Pradesh West</option>
+   <option>Rajasthan</option>
+   <option>Gujarat</option>
+   <option>Bihar & Jharkhand</option>
+   <option>Other</option>
+  </select>
+
+  <label>रिचार्ज प्लान</label>
+  <div class="plans">
+   <div class="plan" data-amount="199">
+    <strong>₹199</strong>
+    <small>Demo Plan</small>
+   </div>
+   <div class="plan" data-amount="299">
+    <strong>₹299</strong>
+    <small>Demo Plan</small>
+   </div>
+   <div class="plan" data-amount="399">
+    <strong>₹399</strong>
+    <small>Demo Plan</small>
+   </div>
+   <div class="plan" data-amount="599">
+    <strong>₹599</strong>
+    <small>Demo Plan</small>
+   </div>
+  </div>
+
+  <label for="amount">या अपनी राशि डालें</label>
+  <input id="amount" type="number" min="1"
+   placeholder="रिचार्ज राशि ₹">
+
+  <button id="recharge">Recharge Now</button>
+  <div id="message" role="status" aria-live="polite"></div>
+ </section>
+
+ <section class="card">
+  <h2>✨ हमारी सुविधाएँ</h2>
+  <p>📱 Prepaid Mobile Recharge</p>
+  <p>📺 DTH Recharge (आगे उपलब्ध होगा)</p>
+  <p>💳 Digital Payment (आगे उपलब्ध होगा)</p>
+  <p>🤝 Recharge Partner Network (आगे उपलब्ध होगा)</p>
+ </section>
+
+ <section class="card">
+  <h2>🔐 सुरक्षित सेवा</h2>
+  <p>हम आपके डिजिटल अनुभव को सुरक्षित और सरल बनाने के लिए काम कर रहे हैं।</p>
+  <div class="note">
+   ⚠️ अभी यह केवल Demo Website है। कोई वास्तविक रिचार्ज या भुगतान नहीं होता। किसी भी राशि का भुगतान न करें।
+  </div>
+ </section>
+
+</main>
+
+<footer>
+ <strong>SSDawar Recharge</strong><br>
+ A Product of SS Dawar Network<br>
+ © 2026 SSDawar. All Rights Reserved.
+</footer>
+
+<script>
+let operator = "Jio";
+let selectedPlan = "";
+
+const operators = document.querySelectorAll(".operator");
+const plans = document.querySelectorAll(".plan");
+const amount = document.getElementById("amount");
+const message = document.getElementById("message");
+
+operators.forEach(item => {
+ item.addEventListener("click", () => {
+  operators.forEach(x => x.classList.remove("active"));
+  item.classList.add("active");
+  operator = item.dataset.op;
+ });
+});
+
+plans.forEach(item => {
+ item.addEventListener("click", () => {
+  plans.forEach(x => x.classList.remove("active"));
+  item.classList.add("active");
+  selectedPlan = item.dataset.amount;
+  amount.value = selectedPlan;
+  message.textContent = "";
+ });
+});
+
+amount.addEventListener("input", () => {
+ selectedPlan = "";
+ plans.forEach(x => x.classList.remove("active"));
+});
+
+document.getElementById("recharge").addEventListener("click", () => {
+ const mobile = document.getElementById("mobile").value.trim();
+ const circle = document.getElementById("circle").value;
+ const value = Number(amount.value);
+
+ message.style.color = "#bd3434";
+
+ if (!/^[6-9]\d{9}$/.test(mobile)) {
+  message.textContent = "कृपया सही 10 अंकों का मोबाइल नंबर डालें।";
+  return;
+ }
+ if (!circle) {
+  message.textContent = "कृपया अपना सर्किल चुनें।";
+  return;
+ }
+ if (!Number.isFinite(value) || value < 1) {
+  message.textContent = "कृपया सही रिचार्ज राशि डालें।";
+  return;
+ }
+
+ message.style.color = "#1765bc";
+ message.textContent =
+ "यह Demo है! " + operator +
+ " पर ₹" + value +
+ " का रिचार्ज अनुरोध बनाया जा सकता है। अभी वास्तविक रिचार्ज उपलब्ध नहीं है।";
+});
+</script>
+
+</body>
+</html>
