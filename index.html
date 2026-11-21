@@ -238,4 +238,19 @@ showHistory();
 </script>
 
 </body>
+<script>
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker
+      .register("./service-worker.js")
+      .then(() => {
+        console.log("SSDawar PWA Ready!");
+      })
+      .catch((error) => {
+        console.error("Service Worker Error:", error);
+      });
+  });
+}
+</script>
+
 </html>
