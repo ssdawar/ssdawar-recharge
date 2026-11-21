@@ -1,0 +1,239 @@
+
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#10152d">
+<title>SSDawar Recharge</title>
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+ font-family:Arial,sans-serif;
+ background:#f1f4fa;color:#172033;
+}
+header{
+ background:linear-gradient(135deg,#10152d,#263d78);
+ color:white;padding:25px 18px;text-align:center;
+}
+header h1{font-size:27px;letter-spacing:1px}
+header p{margin-top:7px;color:#cbd8ff}
+.container{max-width:550px;margin:22px auto;padding:15px}
+.card{
+ background:white;padding:22px;border-radius:17px;
+ box-shadow:0 5px 20px #17203312;margin-bottom:18px;
+}
+h2{font-size:20px;margin-bottom:18px}
+label{display:block;font-weight:bold;margin:14px 0 7px}
+input,select{
+ width:100%;padding:13px;border:1px solid #d8deea;
+ border-radius:9px;font-size:16px;background:white;
+}
+.operators{
+ display:grid;grid-template-columns:repeat(4,1fr);gap:9px;
+}
+.operator{
+ border:1px solid #d8deea;background:white;
+ padding:13px 3px;border-radius:10px;
+ cursor:pointer;font-weight:bold;
+}
+.operator.active{
+ border:2px solid #345fe8;background:#edf2ff;
+ color:#254dc8;
+}
+button{cursor:pointer}
+.main-btn{
+ width:100%;padding:15px;border:0;border-radius:10px;
+ background:#2856dc;color:white;font-size:17px;
+ font-weight:bold;margin-top:20px;
+}
+.main-btn:active{transform:scale(.98)}
+.plans{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.plan{
+ padding:10px 14px;border:1px solid #ccd5e5;
+ background:#f8faff;border-radius:9px;
+}
+.note{
+ background:#fff5d9;color:#76500a;
+ padding:12px;border-radius:9px;font-size:13px;
+ line-height:1.5;
+}
+.history-item{
+ padding:12px 0;border-bottom:1px solid #eee;
+ font-size:14px;line-height:1.7;
+}
+footer{text-align:center;color:#777;padding:20px;font-size:13px}
+</style>
+</head>
+
+<body>
+
+<header>
+ <h1>⚡ SSDawar Recharge</h1>
+ <p>Fast • Simple • Smart Recharge</p>
+</header>
+
+<main class="container">
+
+ <section class="card">
+  <h2>📱 Mobile Recharge</h2>
+
+  <label>मोबाइल नंबर</label>
+  <input id="mobile" type="tel" maxlength="10"
+   placeholder="10 अंकों का मोबाइल नंबर">
+
+  <label>ऑपरेटर चुनें</label>
+  <div class="operators">
+   <button class="operator active" data-op="Jio">Jio</button>
+   <button class="operator" data-op="Airtel">Airtel</button>
+   <button class="operator" data-op="Vi">Vi</button>
+   <button class="operator" data-op="BSNL">BSNL</button>
+  </div>
+
+  <label>सर्किल चुनें</label>
+  <select id="circle">
+   <option value="">सर्किल चुनें</option>
+   <option>Madhya Pradesh</option>
+   <option>Delhi</option>
+   <option>Mumbai</option>
+   <option>Uttar Pradesh</option>
+   <option>Rajasthan</option>
+   <option>Maharashtra</option>
+   <option>Gujarat</option>
+   <option>Bihar</option>
+   <option>Chhattisgarh</option>
+   <option>Other</option>
+  </select>
+
+  <label>रिचार्ज राशि (₹)</label>
+  <input id="amount" type="number" min="1"
+   placeholder="जैसे 199">
+
+  <div class="plans">
+   <button class="plan" data-price="199">₹199</button>
+   <button class="plan" data-price="299">₹299</button>
+   <button class="plan" data-price="349">₹349</button>
+   <button class="plan" data-price="399">₹399</button>
+   <button class="plan" data-price="599">₹599</button>
+  </div>
+
+  <button class="main-btn" id="recharge">
+   Recharge Now
+  </button>
+
+  <div class="note" style="margin-top:16px">
+   DEMO MODE: अभी कोई असली रिचार्ज या भुगतान नहीं होगा।
+  </div>
+ </section>
+
+ <section class="card">
+  <h2>📋 Recharge History</h2>
+  <div id="history">अभी कोई ट्रांजैक्शन नहीं है।</div>
+  <button class="main-btn" id="clearHistory"
+   style="background:#667085">
+   History Clear
+  </button>
+ </section>
+
+</main>
+
+<footer>
+ © 2026 SSDawar Recharge | Powered by SSDawar
+</footer>
+
+<script>
+let operator = "Jio";
+
+document.querySelectorAll(".operator").forEach(btn=>{
+ btn.addEventListener("click",()=>{
+  document.querySelectorAll(".operator").forEach(b=>
+   b.classList.remove("active"));
+  btn.classList.add("active");
+  operator = btn.dataset.op;
+ });
+});
+
+document.querySelectorAll(".plan").forEach(btn=>{
+ btn.addEventListener("click",()=>{
+  document.getElementById("amount").value =
+   btn.dataset.price;
+ });
+});
+
+function getHistory(){
+ try{
+  return JSON.parse(localStorage.getItem("ssdawar_history")) || [];
+ }catch(e){return []}
+}
+
+function showHistory(){
+ const history = getHistory();
+ const box = document.getElementById("history");
+
+ if(!history.length){
+  box.textContent="अभी कोई ट्रांजैक्शन नहीं है।";
+  return;
+ }
+
+ box.innerHTML=history.map(item=>`
+  <div class="history-item">
+   <b>₹${item.amount} - ${item.operator}</b><br>
+   मोबाइल: ${item.mobile}<br>
+   सर्किल: ${item.circle}<br>
+   स्थिति: DEMO SUCCESS<br>
+   <small>${item.date}</small>
+  </div>
+ `).join("");
+}
+
+document.getElementById("recharge").addEventListener("click",()=>{
+ const mobile=document.getElementById("mobile").value.trim();
+ const circle=document.getElementById("circle").value;
+ const amount=Number(document.getElementById("amount").value);
+
+ if(!/^[6-9]\d{9}$/.test(mobile)){
+  alert("सही 10 अंकों का मोबाइल नंबर डालें।");
+  return;
+ }
+
+ if(!circle){
+  alert("कृपया सर्किल चुनें।");
+  return;
+ }
+
+ if(!Number.isInteger(amount)||amount<1||amount>10000){
+  alert("₹1 से ₹10,000 तक सही राशि डालें।");
+  return;
+ }
+
+ if(!confirm("DEMO MODE में टेस्ट ट्रांजैक्शन बनाएं?")){
+  return;
+ }
+
+ const history=getHistory();
+ history.unshift({
+  mobile,operator,circle,amount,
+  date:new Date().toLocaleString("en-IN")
+ });
+
+ localStorage.setItem(
+  "ssdawar_history",JSON.stringify(history.slice(0,50))
+ );
+
+ alert("Demo transaction सफल! कोई असली रिचार्ज नहीं हुआ।");
+ showHistory();
+});
+
+document.getElementById("clearHistory").addEventListener("click",()=>{
+ if(confirm("सारी Demo History हटानी है?")){
+  localStorage.removeItem("ssdawar_history");
+  showHistory();
+ }
+});
+
+showHistory();
+</script>
+
+</body>
+</html>
